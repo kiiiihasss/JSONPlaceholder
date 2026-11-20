@@ -12,16 +12,16 @@ class HomePages extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
-      length: 6, // Updated from 2 to 6
+      length: 6,
       child: Scaffold(
         appBar: AppBar(
           title: const Text('JSONPlaceholder API'),
           bottom: const TabBar(
-            isScrollable: true, // Prevents text overflow with 6 tabs
+            isScrollable: true,
             tabs: [
-              Tab(text: 'Posts'),
-              Tab(text: 'Comments'),
-              Tab(text: 'Albums'),
+              Tab(text: 'Posts(100)', icon: Icon(Icons.article_outlined),),
+              Tab(text: 'Comments', icon: Icon(Icons.comment_outlined),),
+              Tab(text: 'Albums', icon: Icon(Icons.album),),
               Tab(text: 'Users'),
               Tab(text: 'Photos'),
               Tab(text: 'Todos'),
