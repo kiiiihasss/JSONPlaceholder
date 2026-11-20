@@ -9,42 +9,88 @@ class PhotoWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      child: Padding(
-        padding: const EdgeInsets.all(12),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+      child: ListTile(
+        contentPadding: EdgeInsets.symmetric(vertical: 8, horizontal: 14),
+        title: Text(photos.title),
+        leading: ClipRRect(
+          borderRadius: BorderRadius.circular(8),
+          child: Image.network(
+            photos.thumbnailUrl,
+            fit: BoxFit.cover,
+            width: 64,
+            height: 64,
+          ),
+        ),
+        subtitle: Row(
           children: [
-            Row(
-              children: [
-                Text('ID: ${photos.id}'),
-                const Spacer(),
-                Text('Album ID: ${photos.albumId}'),
-              ],
-            ),
-            const SizedBox(height: 10),
-            Image.network(
-              photos.thumbnailUrl,
-              height: 150,
-              width: double.infinity,
-              fit: BoxFit.cover,
-              errorBuilder: (context, error, stackTrace) {
-                return const SizedBox(
-                  height: 150,
-                  child: Center(
-                    child: Text('Image not available'),
-                  ),
-                );
-              },
-            ),
-            const SizedBox(height: 8),
-            Text(
-              photos.title,
-              style: const TextStyle(
-                fontWeight: FontWeight.bold,
+            Container(
+              decoration: BoxDecoration(
+                color: Colors.grey[300],
+                borderRadius: BorderRadius.circular(8),
+              ),
+              child: Padding(
+                padding: const EdgeInsets.all(4.0),
+                child: Text(
+                  'ID: #${photos.id}',
+                  style: TextStyle(fontWeight: FontWeight.bold),
+                ),
               ),
             ),
+            SizedBox(width: 10),
+            Text('Album ID: ${photos.albumId}'),
           ],
         ),
+        trailing: Icon(Icons.arrow_forward_ios),
+        onTap: () {
+          showDialog(
+            context: context,
+            builder: (context) => AlertDialog(
+              title: Text(photos.title),
+              content: Column(
+                children: [
+                  ClipRRect(
+                    borderRadius: BorderRadius.circular(8),
+                    child: Image.network(
+                      photos.url,
+                      fit: BoxFit.cover,
+                      errorBuilder: (context, error, stackTrace) => Container(
+                        height: 100,
+                        color: Colors.grey[300],
+                        child: Icon(Icons.image_not_supported_outlined),
+                      ),
+                    ),
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Container(
+                        decoration: BoxDecoration(
+                          color: Colors.grey[300],
+                          borderRadius: BorderRadius.circular(8),
+                        ),
+                        child: Padding(
+                          padding: const EdgeInsets.all(4.0),
+                          child: Text(
+                            'ID: #${photos.id}',
+                            style: TextStyle(fontWeight: FontWeight.bold),
+                          ),
+                        ),
+                      ),
+                      SizedBox(width: 10),
+                      Text('Album ID: ${photos.albumId}'),
+                    ],
+                  ),
+                ],
+              ),
+              actions: [
+                TextButton(
+                  onPressed: () => Navigator.pop(context),
+                  child: Text('close'),
+                ),
+              ],
+            ),
+          );
+        },
       ),
     );
   }

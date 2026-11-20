@@ -22,8 +22,8 @@ class _AsyncDataViewState<T> extends State<AsyncDataView<T>> {
   @override
   void initState() {
     // TODO: implement initState
-    super.initState();
     _loadData();
+    super.initState();
   }
 
   void _loadData() {
