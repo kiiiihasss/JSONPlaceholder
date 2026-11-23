@@ -19,12 +19,12 @@ class HomePages extends StatelessWidget {
           bottom: const TabBar(
             isScrollable: true,
             tabs: [
-              Tab(text: 'Posts(100)', icon: Icon(Icons.article_outlined),),
-              Tab(text: 'Comments', icon: Icon(Icons.comment_outlined),),
-              Tab(text: 'Albums', icon: Icon(Icons.album),),
-              Tab(text: 'Users'),
-              Tab(text: 'Photos'),
-              Tab(text: 'Todos'),
+              Tab(text: 'Posts(100)', icon: Icon(Icons.article_outlined)),
+              Tab(text: 'Comments', icon: Icon(Icons.comment_outlined)),
+              Tab(text: 'Albums', icon: Icon(Icons.album_outlined)),
+              Tab(text: 'Users', icon: Icon(Icons.people_outline)),
+              Tab(text: 'Photos', icon: Icon(Icons.photo_outlined)),
+              Tab(text: 'Todos', icon: Icon(Icons.checklist_outlined)),
             ],
           ),
         ),
